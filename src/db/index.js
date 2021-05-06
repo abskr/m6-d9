@@ -11,28 +11,41 @@ const sequelize = new Sequelize(
   {
     host: process.env.PGHOST,
     dialect: "postgres",
-    dialectOptions:{
-      ssl:{
-        require:true, 
-        rejectUnauthorized:false
-      }
-    }
+    // dialectOptions:{
+    //   ssl:{
+    //     require:true, 
+    //     rejectUnauthorized:false
+    //   }
+    // }
   }
 );
 
 const models = {
   Author: Author(sequelize, DataTypes),
   Category: Category(sequelize, DataTypes),
-  Author: Author(sequelize, DataTypes),
-  Author: Author(sequelize, DataTypes),
+  Article: Article(sequelize, DataTypes),
+  Review: Review(sequelize, DataTypes),
   sequelize: sequelize
 }
 
-Object.keys(models).forEach(modelName => {
-  if ('associate' in models[modelName]) {
-    models[modelName].associate(models)
-  }
-})
+models.Author.belongsToMany(models.Article, {through: "AuthorArticle"})
+models.Article.belongsToMany(models.Author, {through: "AuthorArticle"})
+
+models.Article.hasOne(models.Category)
+models.Category.belongsTo(models.Article)
+
+models.Article.hasMany(models.Review)
+models.Review.belongsTo(models.Article)
+
+models.Review.hasOne(models.Author)
+models.Author.belongsTo(models.Review)
+
+// Object.keys(models).forEach(modelName => {
+//   console.log(modelName)
+//   if ('associate' in models[modelName]) {
+//     models[modelName].associate(models)
+//   }
+// })
 
 sequelize
   .authenticate()

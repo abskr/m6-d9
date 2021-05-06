@@ -28,10 +28,6 @@ module.exports = (sequelize, DataTypes) => {
       },
     }
   );
-  Article.associate = (models) => {
-    Article.belongsToMany(models.Author)
-    Article.hasOne(models.Category)
-    Article.hasMany(models.Review)
-  }
+
   return Article
 }

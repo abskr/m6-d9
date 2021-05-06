@@ -10,9 +10,6 @@ module.exports = (sequelize, DataTypes) => {
       required: true,
     }
   });
-  Review.associate = (models) => {
-    Review.belongsTo(models.Article)
-    Review.hasOne(models.Author)
-  }
+
   return Review
 }

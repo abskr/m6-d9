@@ -14,8 +14,6 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false
     }
   );
-  Category.associate = (models) => {
-    Category.belongsTo(models.Article)
-  }
+
   return Category
 }

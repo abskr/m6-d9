@@ -14,10 +14,5 @@ module.exports = (sequelize, DataTypes) => {
       required: true,
     }
   });
-
-  Author.associate = (models) => {
-    Author.belongsToMany(models.Article)
-    Author.belongsTo(models.Review)
-  }
   return Author
 }
