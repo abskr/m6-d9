@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       headLine: {
         type: DataTypes.STRING,
         required: true,
+        allowNull: false
       },
       subHead: {
         type: DataTypes.STRING,
@@ -17,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       content: {
         type: DataTypes.STRING,
         required: true,
+        allowNull: false
       },
       img: {
         type: DataTypes.STRING,
