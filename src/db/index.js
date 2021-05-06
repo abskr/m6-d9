@@ -1,8 +1,9 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const User = require('./users')
-// const Category = require('./categories')
-// const Product = require('./products')
-// const Cart = require('./carts')
+const Author = require('./authors')
+const Category = require('./categories')
+const Article = require('./articles')
+const Review = require('./reviews')
+
 const sequelize = new Sequelize(
   process.env.PGDATABASE,
   process.env.PGUSER,
@@ -20,12 +21,18 @@ const sequelize = new Sequelize(
 );
 
 const models = {
-  
+  Author: Author(sequelize, DataTypes),
+  Category: Category(sequelize, DataTypes),
+  Author: Author(sequelize, DataTypes),
+  Author: Author(sequelize, DataTypes),
+  sequelize: sequelize
 }
 
-
-
-
+Object.keys(models).forEach(modelName => {
+  if ('associate' in models[modelName]) {
+    models[modelName].associate(models)
+  }
+})
 
 sequelize
   .authenticate()
