@@ -31,14 +31,14 @@ const models = {
 models.Author.belongsToMany(models.Article, {through: "AuthorArticle"})
 models.Article.belongsToMany(models.Author, {through: "AuthorArticle"})
 
-models.Article.hasOne(models.Category)
+models.Article.hasMany(models.Category)
 models.Category.belongsTo(models.Article)
 
 models.Article.hasMany(models.Review)
 models.Review.belongsTo(models.Article)
 
-models.Review.hasOne(models.Author)
-models.Author.belongsTo(models.Review)
+models.Author.hasOne(models.Review)
+models.Review.belongsTo(models.Author)
 
 // Object.keys(models).forEach(modelName => {
 //   console.log(modelName)

@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       required: true,
     },
-    surame: {
+    surname: {
       type: DataTypes.STRING,
       required: true,
     }
